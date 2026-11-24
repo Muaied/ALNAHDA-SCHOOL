@@ -1,0 +1,22 @@
+{
+  "name": "school-dms-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "School distributed management system - Express + MySQL (two branch nodes)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/db/seed.js",
+    "setup:users": "node src/db/setup-users.js",
+    "setup:key": "node src/db/setup-key.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "mysql2": "^3.11.5",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

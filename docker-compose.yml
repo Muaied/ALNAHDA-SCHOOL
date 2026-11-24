@@ -1,0 +1,36 @@
+services:
+  mysql-khartoum:
+    image: mysql:8.0
+    container_name: nahda-mysql-khartoum
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD غير مضبوط - انسخ .env.example إلى .env في جذر المشروع وعيّن كلمة مرور}
+      MYSQL_DATABASE: nahda_khartoum
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_khartoum_data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      retries: 20
+
+  mysql-atbara:
+    image: mysql:8.0
+    container_name: nahda-mysql-atbara
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD غير مضبوط - انسخ .env.example إلى .env في جذر المشروع وعيّن كلمة مرور}
+      MYSQL_DATABASE: nahda_atbara
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_atbara_data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      retries: 20
+
+volumes:
+  mysql_khartoum_data:
+  mysql_atbara_data:
